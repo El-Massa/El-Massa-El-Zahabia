@@ -1865,7 +1865,7 @@ downloadPdfBtn.addEventListener('click', () => {
         idx + 1,
         row.name,
         row.code1 || '-',
-        row.code2 ? (row.code2 + ' (' + code2Label(row.code2) + ')') : '-',
+        row.code2 ? (row.code2 + code2Label(row.code2) ) : '-',
         row.qtyDisplay != null ? row.qtyDisplay : formatQty(row.qty),
         row.notes || '',
       ])),
