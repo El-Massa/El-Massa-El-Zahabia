@@ -501,8 +501,8 @@
         <tr>
           <th>م</th>
           <th>اسم العطر</th>
-          <th>كود تي سي أف</th>
-          <th>كود كريشين / اكسبريشن</th>
+          <th>TCF</th>
+          <th> CP / EXP</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
@@ -513,7 +513,7 @@
   <div class="qty-panel" id="qtyPanel">
     <div class="selected-name">
       الصنف المختار: <b id="selectedItemName">-</b>
-      <button type="button" class="cancel-select-btn" id="cancelSelectBtn" title="إلغاء الاختيار وإظهار كل النتائج">✖ إلغاء</button>
+      <button type="button" class="cancel-select-btn" id="cancelSelectBtn" title="إلغاء الاختيار وإظهار كل النتائج">✖ </button>
     </div>
     <div class="qty-row">
       <input type="number" id="qtyInput" min="0" step="0.001" placeholder="اكتب الكمية">
@@ -536,8 +536,8 @@
           <tr>
             <th>م</th>
             <th>اسم العطر</th>
-            <th>كود تي سي أف</th>
-            <th>كود كريشين / اكسبريشن</th>
+            <th>TCF</th>
+            <th> CP / EXP</th>
             <th>الكمية</th>
             <th>ملاحظات</th>
             <th></th>
@@ -1662,7 +1662,7 @@ function highlight(text, term) {
 // الأكواد اللي تبدأ بـ CP تبقى "كريشين"، وأي كود تاني (رقمي) يبقى "اكسبريشن"
 function code2Label(code2) {
   if (!code2) return '';
-  return code2.toUpperCase().startsWith('CP') ? 'كريشين' : 'اكسبريشن';
+  return code2.toUpperCase().startsWith('CP') ? 'CP' : 'EXP';
 }
 
 function code2Display(code2) {
@@ -1718,7 +1718,7 @@ function selectItem(item, rowEl) {
     }
   });
   selectedItem = item;
-  selectedItemName.textContent = `${item.name} (كود تي سي أف: ${item.code1 || '-'}${item.code2 ? ' / كود ' + code2Label(item.code2) + ': ' + item.code2 : ''})`;
+  selectedItemName.textContent = `${item.name} (TCF: ${item.code1 || '-'}${item.code2 ? ' /  ' + code2Label(item.code2) + ': ' + item.code2 : ''})`;
   qtyPanel.classList.add('active');
   qtyInput.value = '';
   qtyInput.focus();
@@ -1855,12 +1855,12 @@ downloadPdfBtn.addEventListener('click', () => {
     const n = cart.length;
     const totalQty = cart.reduce((sum, r) => sum + r.qty, 0);
 
-    // ترتيب الأعمدة من اليمين لليسار: م / الصنف / كود تي سي أف / كود كريشين-اكسبريشن / الكمية / ملاحظات
+    // ترتيب الأعمدة من اليمين لليسار: م / الصنف / كودTCF / كود كريشين-اكسبريشن / الكمية / ملاحظات
     const COL_COUNT = 6;
     const aoa = [
       ['التاريخ : ' + now.toLocaleDateString('ar-EG'), '', '', '', '', ''],
       ['السادة : ' + clientName, '', '', '', '', ''],
-      ['م', 'الصنف', 'كود تي سي أف', 'كود كريشين/اكسبريشن', 'الكمية', 'ملاحظات'],
+      ['م', 'الصنف', 'كودTCF', 'كود كريشين/اكسبريشن', 'الكمية', 'ملاحظات'],
       ...cart.map((row, idx) => ([
         idx + 1,
         row.name,
@@ -1878,7 +1878,7 @@ downloadPdfBtn.addEventListener('click', () => {
     ws['!cols'] = [
       { wch: 6 },   // م
       { wch: 26 },  // الصنف
-      { wch: 16 },  // كود تي سي أف
+      { wch: 16 },  // كودTCF
       { wch: 26 },  // كود كريشين/اكسبريشن
       { wch: 12 },  // الكمية
       { wch: 26 },  // ملاحظات
