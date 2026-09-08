@@ -491,7 +491,7 @@
 
 <div class="container">
   <div class="search-box">
-    <input type="text" id="searchInput" placeholder="اكتب اسم العطر أو الكود للبحث...">
+    <input type="text" id="searchInput" placeholder="اكتب الصنف أو الكود للبحث...">
     <div class="count" id="resultCount"></div>
   </div>
 
@@ -500,9 +500,9 @@
       <thead>
         <tr>
           <th>م</th>
-          <th>اسم العطر</th>
+          <th>الصنف</th>
           <th>TCF</th>
-          <th> CP / EXP</th>
+          <th>CP/EXP</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
@@ -517,7 +517,7 @@
     </div>
     <div class="qty-row">
       <input type="number" id="qtyInput" min="0" step="0.001" placeholder="اكتب الكمية">
-      <span class="unit-label">كيلو</span>
+      <span class="unit-label">ك</span>
       <input type="text" id="notesInput" class="notes-input" placeholder="لو عاوز بلاستيك او انصاص أكتبها هنا (اختياري)">
       <button class="add-btn" id="addBtn">➕ إضافة الصنف</button>
     </div>
@@ -535,9 +535,9 @@
         <thead>
           <tr>
             <th>م</th>
-            <th>اسم العطر</th>
+            <th>الصنف</th>
             <th>TCF</th>
-            <th> CP / EXP</th>
+            <th>CP/EXP</th>
             <th>الكمية</th>
             <th>ملاحظات</th>
             <th></th>
@@ -1755,7 +1755,7 @@ function renderCart() {
       <td class="name-cell">${row.name}</td>
       <td>${row.code1 || '-'}</td>
       <td>${code2Display(row.code2)}</td>
-      <td>${row.qtyDisplay != null ? row.qtyDisplay : formatQty(row.qty)} كيلو</td>
+      <td>${row.qtyDisplay != null ? row.qtyDisplay : formatQty(row.qty)} ك</td>
       <td><input type="text" class="notes-edit" data-idx="${idx}" value="${(row.notes || '').replace(/"/g, '&quot;')}" placeholder="ملاحظات"></td>
       <td><button class="remove-btn" data-idx="${idx}">حذف</button></td>
     `;
