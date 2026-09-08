@@ -1662,12 +1662,12 @@ function highlight(text, term) {
 // الأكواد اللي تبدأ بـ CP تبقى "كريشين"، وأي كود تاني (رقمي) يبقى "اكسبريشن"
 function code2Label(code2) {
   if (!code2) return '';
-  return code2.toUpperCase().startsWith('CP') ? 'CP' : 'EXP';
+  return code2.toUpperCase().startsWith('CP') ? '' : '';
 }
 
 function code2Display(code2) {
   if (!code2) return '-';
-  return `${code2} <small style="opacity:.65">(${code2Label(code2)})</small>`;
+  return `${code2} <small style="opacity:.65"></small>`;
 }
 
 function render(filter = '') {
@@ -1691,7 +1691,7 @@ function render(filter = '') {
           <td>${item.m}</td>
           <td class="name-cell">${highlight(item.name, term)}</td>
           <td>${highlight(item.code1, term)}</td>
-          <td>${item.code2 ? highlight(item.code2, term) + ` <small style="opacity:.65">(${code2Label(item.code2)})</small>` : '-'}</td>
+          <td>${item.code2 ? highlight(item.code2, term) + ` <small style="opacity:.65"></small>` : '-'}</td>
         `;
         tr.addEventListener('click', () => selectItem(item, tr));
         tableBody.appendChild(tr);
